@@ -1,4 +1,4 @@
-# Docker REDCap
+# REDCap Docker
 
 **NB** Use this Docker image once you have succesfully upgraded Redcap using **docker_redcap_upgrade**
 
