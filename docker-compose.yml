@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  redcap:
+    restart: always
+    build:
+      context: ./redcap
+      args:
+        redcap_version: "${REDCAP_VERSION}"
+        smtp_server: "${SMTP_SERVER}"
+    ports:
+      - "82:80"
+    volumes:
+      - /share:/share
+
