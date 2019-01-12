@@ -12,7 +12,7 @@ ENV redcap_version $redcap_version
 
 RUN echo $redcap_version
 
-MAINTAINER Saj Issa <saj.issa@gmail.com>
+MAINTAINER Richard Bramley <rabramley@gmail.com>
 
 ################## BEGIN INSTALLATION ######################
 
@@ -58,15 +58,6 @@ EXPOSE 80
 RUN mkdir -p /var/www/site
 RUN mkdir -p /share/edocs
 RUN chown www-data:www-data /share/edocs
-
-# Copy this repo into place.
-ADD index.php /var/www/site
-
-# Copy this repo into place.
-ADD info.php /var/www/site
-
-# Copy this repo into place.
-ADD index.php /var/www/html
 
 ADD redcap$redcap_version.zip /home
 RUN unzip /home/redcap$redcap_version.zip -d /home
