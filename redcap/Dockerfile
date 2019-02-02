@@ -26,6 +26,7 @@ RUN apt-get update && \
         php7.0-curl  \
         php7.0-mcrypt  \
         php7.0-json \
+        php7.0-mbstring \
         libapache2-mod-php7.0  \
         php7.0-zip \
         php7.0-gd \
