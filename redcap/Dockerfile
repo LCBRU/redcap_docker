@@ -19,7 +19,29 @@ MAINTAINER Richard Bramley <rabramley@gmail.com>
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install apache2 php7.0  php7.0-mysql  php7.0-curl  php7.0-mcrypt  php7.0-json libapache2-mod-php7.0  php7.0-zip php7.0-gd php-pear php-auth curl phpmyadmin libpcre3-dev wget git vim unzip mysql-server ntp cron supervisor && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install \
+        apache2 \
+        php7.0  \
+        php7.0-mysql  \
+        php7.0-curl  \
+        php7.0-mcrypt  \
+        php7.0-json \
+        libapache2-mod-php7.0  \
+        php7.0-zip \
+        php7.0-gd \
+        php-pear \
+        php-auth \
+        curl \
+        phpmyadmin \
+        libpcre3-dev \
+        wget \
+        git \
+        vim \
+        unzip \
+        mysql-server \
+        ntp \
+        cron \
+        supervisor && \
     apt-get clean && \
     update-rc.d apache2 defaults 
 
@@ -36,7 +58,12 @@ RUN postconf -e mail_spool_directory="/var/spool/mail/"
 RUN postconf -e mailbox_command=""
 RUN postconf -e relayhost="$smtp_server"
 
-RUN pear install DB
+# This code doesn't work because all PHP developers are idiots
+# RUN pear install DB
+
+# COPY pear_db.zip pear_db.zip
+# RUN unzip pear_db.zip && rm pear_db.zip
+# RUN pear install /DB-trunk/package.xml
 
 # php5    php5-mysql    php5-curl    php5-mcrypt    php5-json    libapache2-mod-php5    php-pear php-auth curl phpmyadmin
 # php7.0  php7.0-mysql  php7.0-curl  php7.0-mcrypt  php7.0-json  libapache2-mod-php7.0  php-pear php-auth curl phpmyadmin
