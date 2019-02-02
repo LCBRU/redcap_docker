@@ -31,15 +31,8 @@ RUN apt-get update && \
         php7.0-gd \
         php-pear \
         php-auth \
-        curl \
-        phpmyadmin \
         libpcre3-dev \
-        wget \
-        git \
-        vim \
         unzip \
-        mysql-server \
-        ntp \
         cron \
         supervisor && \
     apt-get clean && \
@@ -57,16 +50,6 @@ RUN postconf -e mydestination="$smtp_server, uhlbriccsapp01.xuhl-tr.nhs.uk, loca
 RUN postconf -e mail_spool_directory="/var/spool/mail/"
 RUN postconf -e mailbox_command=""
 RUN postconf -e relayhost="$smtp_server"
-
-# This code doesn't work because all PHP developers are idiots
-# RUN pear install DB
-
-# COPY pear_db.zip pear_db.zip
-# RUN unzip pear_db.zip && rm pear_db.zip
-# RUN pear install /DB-trunk/package.xml
-
-# php5    php5-mysql    php5-curl    php5-mcrypt    php5-json    libapache2-mod-php5    php-pear php-auth curl phpmyadmin
-# php7.0  php7.0-mysql  php7.0-curl  php7.0-mcrypt  php7.0-json  libapache2-mod-php7.0  php-pear php-auth curl phpmyadmin
 
 ##################### INSTALLATION END #####################
 
