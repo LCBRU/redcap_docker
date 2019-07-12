@@ -11,5 +11,5 @@ services:
     ports:
       - "82:80"
     volumes:
-      - /share:/share
+      - /share:/local/data/redcap/
 
