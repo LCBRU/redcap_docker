@@ -5,10 +5,10 @@
 // Replace the values inside the single quotes below with the values for your MySQL configuration.
 // If not using the default port 3306, then append a colon and port number to the hostname (e.g. $hostname = 'example.com:3307';).
 
-$hostname       = '{ change me }';
-$db                 = '{ change me }';
-$username       = '{ change me }';
-$password       = '{ change me }';
+$hostname       = getenv("MYSQL_HOSTNAME");
+$db             = getenv("MYSQL_DATABASE");
+$username       = getenv("MYSQL_USERNAME");
+$password       = getenv("MYSQL_PASSWORD");
 
 // You may optionally utilize a database connection over SSL/TLS for improved security. To do so, at minimum
 // you must provide the path of the key file, the certificate file, and certificate authority file.
@@ -30,7 +30,7 @@ $db_ssl_cipher  = NULL;
 // Add a random value for the $salt variable below, preferably alpha-numeric with 8 characters or more. This value wll be
 // used for data de-identification hashing for data exports. Do NOT change this value once it has been initially set.
 
-$salt = '{ change me }';
+$salt = getenv("SALT");
 
 
 //********************************************************************************************************************

@@ -3,13 +3,15 @@ version: '2'
 services:
   redcap:
     restart: always
+    env_file:
+     - .env
     build:
       context: ./redcap
       args:
-        redcap_version: "${REDCAP_VERSION}"
         smtp_server: "${SMTP_SERVER}"
+        redcap_version: "${REDCAP_VERSION}"
     ports:
       - "82:80"
     volumes:
-      - /local/data/redcap/:/share
+      - "${DATA_DIRECTORY}:/edocs"
 
