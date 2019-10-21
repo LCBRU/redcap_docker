@@ -12,20 +12,18 @@ RUN apt-get update -qq && \
     cron \
     libpng-dev \
     libzip-dev \
-    unzip \
     curl \
     && docker-php-ext-install gd zip mysqli \
     && rm -r /var/lib/apt/lists/*
 
 # Copy in REDCap files
-ADD redcap$redcap_version.zip /
-RUN unzip /redcap$redcap_version.zip -d /
-RUN mv /redcap/* /var/www/html/
+ADD redcap /var/www/html/
 ADD database.php /var/www/html/
-RUN mkdir /edocs/
-
 ADD html /html/
 RUN mv /html/* /var/www/html/
+
+# Upload folder
+RUN mkdir /edocs/
 
 # Configure temp directory
 RUN chmod 777 -R /var/www/html/temp
