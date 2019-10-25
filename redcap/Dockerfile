@@ -4,6 +4,7 @@ LABEL maintainer="rabramley@gmail.com"
 
 ARG smtp_server
 ARG redcap_version
+ARG redcap_directory
 
 RUN apt-get update -qq && \
     apt-get -yq --no-install-recommends install \
@@ -19,16 +20,16 @@ RUN apt-get update -qq && \
 
 
 # Copy in REDCap files
-ADD redcap /var/www/html/redcap/
-ADD database.php /var/www/html/redcap/
+ADD redcap /var/www/html/$redcap_directory/
+ADD database.php /var/www/html/$redcap_directory/
 ADD html /html/
-RUN mv /html/* /var/www/html/redcap/
+RUN mv /html/* /var/www/html/$redcap_directory/
 
 # Upload folder
 RUN mkdir /edocs/
 
 # Configure temp directory
-RUN chmod 777 -R /var/www/html/redcap/temp
+RUN chmod 777 -R /var/www/html/$redcap_directory/temp
                                                                                                                                   
 # Suggested PHP config changes
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
@@ -48,7 +49,7 @@ RUN echo "defaults" > /etc/msmtprc && \
   echo "auto_from on" >> /etc/msmtprc && \
   echo "maildomain uhl-tr.nhs.uk" >> /etc/msmtprc
 
-RUN chown -R www-data:www-data /var/www/html/redcap/modules/
+RUN chown -R www-data:www-data /var/www/html/$redcap_directory/modules/
 RUN chown -R www-data:www-data /edocs/
 
 # Run Redcap cronjob
@@ -56,7 +57,7 @@ RUN echo "* * * * * curl http://localhost/cron.php >> /cron.log 2>&1" | crontab 
 
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ADD redcap-logo-large.png /var/www/html/redcap/redcap_v$redcap_version/Resources/images/redcap-logo-large.png
-ADD redcap-logo-medium.png /var/www/html/redcap/redcap_v$redcap_version/Resources/images/redcap-logo-medium.png
+ADD redcap-logo-large.png /var/www/html/$redcap_directory/redcap_v$redcap_version/Resources/images/redcap-logo-large.png
+ADD redcap-logo-medium.png /var/www/html/$redcap_directory/redcap_v$redcap_version/Resources/images/redcap-logo-medium.png
 
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
