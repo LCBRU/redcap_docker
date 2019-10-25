@@ -13,7 +13,7 @@ RUN apt-get update -qq && \
     libpng-dev \
     libzip-dev \
     curl \
-    vi \
+    vim \
     && docker-php-ext-install gd zip mysqli \
     && rm -r /var/lib/apt/lists/*
 
