@@ -18,6 +18,8 @@ RUN apt-get update -qq && \
     && docker-php-ext-install gd zip mysqli \
     && rm -r /var/lib/apt/lists/*
 
+RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu
+RUN docker-php-ext-install ldap
 
 # Copy in REDCap files
 ADD redcap /var/www/html/$redcap_directory/
