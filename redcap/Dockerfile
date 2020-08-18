@@ -13,6 +13,7 @@ RUN apt-get update -qq && \
     cron \
     libpng-dev \
     libzip-dev \
+    libldap2-dev \
     curl \
     vim \
     && docker-php-ext-install gd zip mysqli \
