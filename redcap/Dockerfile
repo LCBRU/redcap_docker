@@ -40,6 +40,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN sed -i.bak 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' $PHP_INI_DIR/php.ini
 RUN sed -i.bak 's/post_max_size = 8M/post_max_size = 32M/g' $PHP_INI_DIR/php.ini
 RUN sed -i.bak 's/; max_input_vars = 1000/max_input_vars = 10000/g' $PHP_INI_DIR/php.ini
+RUN sed -i.bak 's/;error_log = php_errors.log/error_log = php_errors.log/g' $PHP_INI_DIR/php.ini
 
 # Mail Configuration
 RUN echo 'sendmail_path = "/usr/bin/msmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
@@ -58,7 +59,7 @@ RUN chown -R www-data:www-data /edocs/
 # Run Redcap cronjob
 RUN echo "*/15 8-18 * * * curl http://localhost/$redcap_directory/cron.php >> /cron.log 2>&1" | crontab - 
 
-RUN echo "2020-08-19 C"
+RUN echo "2020-08-19 D"
 
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
