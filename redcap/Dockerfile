@@ -58,6 +58,8 @@ RUN chown -R www-data:www-data /edocs/
 # Run Redcap cronjob
 RUN echo "*/15 8-18 * * * curl http://localhost/$redcap_directory/cron.php >> /cron.log 2>&1" | crontab - 
 
+RUN echo "2020-08-19 A"
+
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ADD redcap-logo-large.png /var/www/html/$redcap_directory/redcap_v$redcap_version/Resources/images/redcap-logo-large.png
