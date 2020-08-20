@@ -66,5 +66,7 @@ COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD redcap-logo-large.png /var/www/html/$redcap_directory/redcap_v$redcap_version/Resources/images/redcap-logo-large.png
 ADD redcap-logo-medium.png /var/www/html/$redcap_directory/redcap_v$redcap_version/Resources/images/redcap-logo-medium.png
 ADD ldap_config.php /var/www/html/$redcap_directory/webtools2/ldap/ldap_config.php
+RUN setfacl -m u:www-data:r /var/www/html/$redcap_directory/webtools2/ldap/ldap_config.php
+
 
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
