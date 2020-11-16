@@ -53,7 +53,7 @@ RUN echo "defaults" > /etc/msmtprc && \
   echo "auto_from on" >> /etc/msmtprc && \
   echo "maildomain uhl-tr.nhs.uk" >> /etc/msmtprc
 
-RUN chown -fR www-data:www-data /var/www/html/$redcap_directory/modules/
+RUN chown -fR www-data:www-data /var/www/html/$redcap_directory/modules/ || exit 0
 RUN chown -R www-data:www-data /edocs/
 
 # Run Redcap cronjob
