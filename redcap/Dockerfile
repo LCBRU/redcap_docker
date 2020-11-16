@@ -16,7 +16,7 @@ RUN apt-get update -qq && \
     libldap2-dev \
     curl \
     vim \
-    mysql-client \
+    default-mysql-client \
     && docker-php-ext-install gd zip mysqli \
     && rm -r /var/lib/apt/lists/*
 
