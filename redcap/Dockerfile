@@ -71,5 +71,7 @@ ADD redcap-logo-medium.png /var/www/html/$redcap_directory/redcap_v$redcap_versi
 ADD ldap_config.php /var/www/html/$redcap_directory/webtools2/ldap/ldap_config.php
 RUN chown www-data /var/www/html/$redcap_directory/webtools2/ldap/ldap_config.php
 
+ADD fixes/redcap_v10/DataEntry/index.php /var/www/html/$redcap_directory/redcap_v$redcap_version/DataEntry/index.php
+ADD fixes/redcap_v10/Survey/index.php /var/www/html/$redcap_directory/redcap_v$redcap_version/Survey/index.php
 
 CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
