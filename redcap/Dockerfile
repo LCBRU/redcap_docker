@@ -44,7 +44,7 @@ RUN sed -i.bak 's/upload_max_filesize = 2M/upload_max_filesize = 32M/g' $PHP_INI
 RUN sed -i.bak 's/post_max_size = 8M/post_max_size = 32M/g' $PHP_INI_DIR/php.ini
 RUN sed -i.bak 's/;max_input_vars = 1000/max_input_vars = 100000/g' $PHP_INI_DIR/php.ini
 RUN sed -i.bak 's/;error_log = php_errors.log/error_log = php_errors.log/g' $PHP_INI_DIR/php.ini
-RUN sed -i.bak 's/;session.cookie_secure =/session.cookie_secure = On/g' $PHP_INI_DIR/php.ini
+RUN sed -i.bak "s/;session.cookie_secure =/session.cookie_secure = ${secure_cookies}/g" $PHP_INI_DIR/php.ini
 
 # Mail Configuration
 RUN echo 'sendmail_path = "/usr/bin/msmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
