@@ -11,6 +11,7 @@ services:
         smtp_server: "${SMTP_SERVER}"
         redcap_version: "${REDCAP_VERSION}"
         redcap_directory: "${REDCAP_DIRECTORY}"
+        secure_cookies: '${SECURE_COOKIES:-On}'
     ports:
       - "${HTTP_PORT}:80"
     volumes:
