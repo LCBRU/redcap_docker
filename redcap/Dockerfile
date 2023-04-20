@@ -27,6 +27,7 @@ RUN docker-php-ext-install ldap
 # Copy in REDCap files
 ADD redcap /var/www/html/$redcap_directory/
 ADD database.php /var/www/html/$redcap_directory/
+ADD redcap_connect.php /var/www/html/$redcap_directory/
 ADD html /html/
 RUN mv /html/* /var/www/html/$redcap_directory/
 RUN ln -s /var/www/html/$redcap_directory/hook_functions.php /var/www/html/
