@@ -31,6 +31,7 @@ if (strpos($hostname, ':') !== false) {
 $hostname = preg_replace("/\:.*/", '', $hostname);
 if (!is_numeric($port)) $port = '3306'; // Default MySQL port
 if ($hostname === null && $db_socket === null) $port = null;
+$offlineMessage = 'CRITICAL ERROR: REDCap server is offline!';
 try {
 	if (isset($db_ssl_ca) && $db_ssl_ca != '') {
 		// Connect to MySQL via SSL
@@ -45,6 +46,7 @@ try {
 	}
 }
 catch(Throwable $ex) {
+	error_log($offlineMessage . "\n" . $ex);
 	$conn = $conn_ssl = false;
 }
 if (!$conn || (isset($conn_ssl) && !$conn_ssl)) {
@@ -57,7 +59,7 @@ if (!$conn || (isset($conn_ssl) && !$conn_ssl)) {
 	?>
     <div style="font: normal 12px Verdana, Arial;padding:20px;border: 1px solid red;color: #800000;max-width: 600px;background: #FFE1E1;">
         <div style="font-weight:bold;font-size:15px;padding-bottom:5px;">
-            CRITICAL ERROR: REDCap server is offline!
+            <?=$offlineMessage?>
         </div>
         <div>
             For unknown reasons, REDCap cannot communicate with its database server, which may be offline. Please contact your
