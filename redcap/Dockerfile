@@ -64,7 +64,7 @@ RUN chown -R www-data:www-data /edocs/
 # Run Redcap cronjob
 RUN echo "*/15 8-18 * * * curl http://localhost/$redcap_directory/cron.php >> /cron.log 2>&1" | crontab - 
 
-RUN echo "2020-08-21 A"
+RUN echo "2020-08-21 B"
 
 COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
